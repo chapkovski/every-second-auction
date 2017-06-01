@@ -38,7 +38,7 @@ def runEverySecond():
     #     print(p.participant.code)
 
 l = task.LoopingCall(runEverySecond)
-l.start(1.0) # call every second
+
 
 class Constants(BaseConstants):
     name_in_url = 'sandbox1'
@@ -48,12 +48,14 @@ class Constants(BaseConstants):
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):
+        print('#####', l.__dict__)
+        if not l.running:
+            l.start(1.0) # call every second
+        # if not 'background_starts' in self.session.vars:
+        #     print('ADDING TASK>>>>>>>>')
+        #     self.session.vars['background_starts'] = True
 
-        if not 'background_starts' in self.session.vars:
-            print('ADDING TASK>>>>>>>>')
-            self.session.vars['background_starts'] = True
-
-            ...
+        ...
 
 class Player(BasePlayer):
     ...
@@ -97,12 +99,12 @@ class Group(BaseGroup):
 
 
 
-process = subprocess.Popen(['echo', 'asdf'], )
+# process = subprocess.Popen(['echo', 'asdf'], )
 # process = subprocess.Popen(['python', 'manage.py', 'process_tasks'], )
-# def cleanup():
-#     print('############### cleaning and terminating... $$$$$$$$$$')
-    # Task.objects.all().delete()
-    # subprocess.run(['killall', 'python', 'manage.py', 'process_tasks'], )
-    # process.terminate()
-
-# atexit.register(cleanup)
+def cleanup():
+    print('############### cleaning and terminating... $$$$$$$$$$')
+    # try:
+    #     l.stop()
+    # except ValueError:
+    #     print('fuck')
+atexit.register(cleanup)
