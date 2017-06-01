@@ -9,7 +9,6 @@ class Decisions(Page):
     form_fields = ['gamble_{}'.format(i) for i in range(1, 11)]
 
     def vars_for_template(self):
-        # a = Variable('form').resolve(self.context)
         smth = self.get_form()
         fields_to_show=self.form_fields
         leftcol = []
@@ -28,14 +27,6 @@ class Decisions(Page):
 #     pass
 
 
-class Detection(Page): #here the decision to detect the TLS is taken
-    form_model = models.Player
-
-
-    # def get_form_fields(self):
-    #     others = self.player.get_others_in_group()
-    #     fields_to_show = ['detectP{}'.format(p.id_in_group) for p in others if p.isTLC]
-    #     return fields_to_show
 
 class ResultsWaitPage(WaitPage):
 
