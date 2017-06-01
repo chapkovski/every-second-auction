@@ -2,8 +2,8 @@ from otree.api import (
     models, widgets, BaseConstants, BaseSubsession, BaseGroup, BasePlayer,
     Currency as c, currency_range
 )
-from background_task import background
-from background_task.models import Task
+# from background_task import background
+# from background_task.models import Task
 import atexit
 import subprocess
 from django.db import transaction, models as dmodels
@@ -71,18 +71,18 @@ class Group(BaseGroup):
 #     print('GROUP HAS CHANGED')
 #
 #
-@transaction.atomic
-@background()
-def change_price():
-    print('we are at background.....')
-    updating_groups = Group.objects.filter(update_price=True)
-    for g in updating_groups:
-        g.price += 1
-        g.save()
-        channels.Group('hellow').send(
-                {'text': json.dumps(
-                    {'price': g.price})}
-            )
+# @transaction.atomic
+# @background()
+# def change_price():
+#     print('we are at background.....')
+#     updating_groups = Group.objects.filter(update_price=True)
+#     for g in updating_groups:
+#         g.price += 1
+#         g.save()
+#         channels.Group('hellow').send(
+#                 {'text': json.dumps(
+#                     {'price': g.price})}
+#             )
 
 # @transaction.atomic
 # @background()
