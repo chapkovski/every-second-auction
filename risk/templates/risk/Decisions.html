@@ -35,19 +35,19 @@
                 <th class="text-center">Mon choix est Lotterie B</th>
             </tr>
              </tr>
-            {% for field in form %}
+          {% for abc in abclist %}
             <tr>
             <tr>
                 <td>
-                    {{ field.label_tag }}
-                    {{ field.errors }}
+                  {{ abc.0.label}}
+                    {{ abc.0.errors }}
                 </td>
-                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>(1)</td>
-                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>(2,3,4,5,6,7,8,9,10)</td>
-                <td><input type="radio" name="{{ field.html_name}}" value="True" required {% if field.value|stringformat:"s" == 'True' %}checked{% endif %}></td>
-                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>(1)</td>
-                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>(2,3,4,5,6,7,8,9,10)</td>
-                <td><input type="radio" name="{{ field.html_name}}" value="False" required {% if field.value|stringformat:"s" == 'False' %}checked{% endif %}></td>
+                <td><strong>{{ Constants.risk_averse_payoff_1 }}</strong> <br/>({{abc.1}})</td>
+                <td><strong>{{ Constants.risk_averse_payoff_2 }}</strong> <br/>({{abc.2}})</td>
+                <td><input type="radio" name="{{ abc.0.html_name}}" value="True" required {% if abc.0.value == 'True' %}checked{% endif %}></td>
+                <td><strong>{{ Constants.risk_takers_payoff_1 }}</strong> <br/>({{abc.1}})</td>
+                <td><strong>{{ Constants.risk_takers_payoff_2 }}</strong> <br/>({{abc.2}})</td>
+                <td><input type="radio" name="{{ abc.0.html_name}}" value="False" required {% if abc.0.value == 'False' %}checked{% endif %}></td>
             </tr>
             <tr>
             {% endfor %}

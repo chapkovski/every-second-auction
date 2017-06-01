@@ -33,14 +33,9 @@ class Group(BaseGroup):
 
 
 class Player(BasePlayer):
-    gamble_1 = models.BooleanField()
-    gamble_2 = models.BooleanField()
-    gamble_3 = models.BooleanField()
-    gamble_4 = models.BooleanField()
-    gamble_5 = models.BooleanField()
-    gamble_6 = models.BooleanField()
-    gamble_7 = models.BooleanField()
-    gamble_8 = models.BooleanField()
-    gamble_9 = models.BooleanField()
-    gamble_10 = models.BooleanField()
+    ...
 
+
+for i in range(1,11):
+    Player.add_to_class("gamble_{}".format(i),
+                        models.BooleanField())

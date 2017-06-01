@@ -128,18 +128,18 @@ SESSION_CONFIGS = [
     #     'num_demo_participants': 3,
     #     'app_sequence': ['ebay', ],
     # },
-        {
-            'name': 'sandbox1',
-            'display_name': 'sandbox1',
-            'num_demo_participants': 1,
-            'app_sequence': ['sandbox1', ],
-        },
         # {
-        #     'name': 'risk',
-        #     'display_name': 'risk',
+        #     'name': 'sandbox1',
+        #     'display_name': 'sandbox1',
         #     'num_demo_participants': 1,
-        #     'app_sequence': ['risk', ],
+        #     'app_sequence': ['sandbox1', ],
         # },
+        {
+            'name': 'risk',
+            'display_name': 'risk',
+            'num_demo_participants': 1,
+            'app_sequence': ['risk', ],
+        },
 ]
 
 # anything you put after the below line will override
