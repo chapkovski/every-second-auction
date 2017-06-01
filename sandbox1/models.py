@@ -28,14 +28,17 @@ from django.dispatch import receiver
 
 
 def runEverySecond():
-    players = Player.objects.all()
+    # players = Player.objects.all()
+    print('WE ARE RUNNING EVERY SECNOD!!!')
     channels.Group('hellow').send(
             {'text': json.dumps(
                 {'price': 123})}
         )
-    for p in players:
-        print(p.participant.code)
+    # for p in players:
+    #     print(p.participant.code)
 
+l = task.LoopingCall(runEverySecond)
+l.start(1.0) # call every second
 
 class Constants(BaseConstants):
     name_in_url = 'sandbox1'
@@ -49,8 +52,7 @@ class Subsession(BaseSubsession):
         if not 'background_starts' in self.session.vars:
             print('ADDING TASK>>>>>>>>')
             self.session.vars['background_starts'] = True
-            l = task.LoopingCall(runEverySecond)
-            l.start(1.0) # call every second
+
             ...
 
 class Player(BasePlayer):
