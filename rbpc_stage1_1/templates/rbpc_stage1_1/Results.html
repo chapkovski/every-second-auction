@@ -1,0 +1,18 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Results
+{% endblock %}
+
+{% block content %}
+<h2>Group id:{{group.id}}</h2>
+{{myform}}
+whatever <br>
+    {% next_button %}
+
+
+
+
+
+{% endblock %}

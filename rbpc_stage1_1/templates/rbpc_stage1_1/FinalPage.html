@@ -1,0 +1,31 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Choose a partner for Stage 2
+{% endblock %}
+
+{% block content %}
+
+<p>
+    Thank you. Stage 1 is complete.
+</p>
+<p>
+    Please now choose the player that you would like to
+    play with in Stage 2. If they also choose you, you will
+    proceed as partners into Stage 2. If they do not choose you,
+    you will not play Stage 2.
+</p>
+{{ form }}
+{{ form.numbers.errors }}
+{% next_button %}
+
+{% endblock %}
+
+{% block styles %}
+<style>
+ul {
+     list-style-type: none;
+}
+</style>
+{% endblock %}

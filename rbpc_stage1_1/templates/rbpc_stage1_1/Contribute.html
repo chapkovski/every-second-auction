@@ -1,0 +1,15 @@
+{% extends "global/Base.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+      TEST 1  Contribution (Period {{ subsession.round_number }} of {{ Constants.num_rounds }})
+{% endblock %}
+
+{% block content %}
+{% formfield player.contribution with label="How much will you contribute?" %}
+
+    {% next_button %}
+
+
+
+{% endblock %}

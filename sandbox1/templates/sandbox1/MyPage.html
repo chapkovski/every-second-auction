@@ -1,0 +1,22 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Page title
+{% endblock %}
+
+{% block content %}
+
+
+{{form}}
+    {% next_button %}
+
+{% endblock %}
+
+
+      {% block scripts %}
+      {% include 'sandbox1/MyPage_channel.js.html' %}
+        <script>
+
+        </script>
+      {% endblock %}
