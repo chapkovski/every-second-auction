@@ -9,7 +9,7 @@ import subprocess
 from django.db import transaction, models as dmodels
 import channels
 import json
-
+from django.db import connection
 
 from twisted.internet import task
 from twisted.internet import reactor
@@ -27,18 +27,12 @@ from django.dispatch import receiver
 
 
 
-def runEverySecond():
-    # players = Player.objects.all()
-    print('WE ARE RUNNING EVERY SECNOD!!!')
-    channels.Group('hellow').send(
-            {'text': json.dumps(
-                {'price': 123})}
-        )
+def group_model_exists():
+    return 'sandbox1_group' in connection.introspection.table_names()
+
+
     # for p in players:
     #     print(p.participant.code)
-
-l = task.LoopingCall(runEverySecond)
-
 
 class Constants(BaseConstants):
     name_in_url = 'sandbox1'
@@ -49,8 +43,7 @@ class Constants(BaseConstants):
 class Subsession(BaseSubsession):
     def before_session_starts(self):
         print('#####', l.__dict__)
-        if not l.running:
-            l.start(1.0) # call every second
+
         # if not 'background_starts' in self.session.vars:
         #     print('ADDING TASK>>>>>>>>')
         #     self.session.vars['background_starts'] = True
@@ -103,8 +96,23 @@ class Group(BaseGroup):
 # process = subprocess.Popen(['python', 'manage.py', 'process_tasks'], )
 def cleanup():
     print('############### cleaning and terminating... $$$$$$$$$$')
-    # try:
-    #     l.stop()
-    # except ValueError:
-    #     print('fuck')
+
 atexit.register(cleanup)
+
+
+def runEverySecond():
+    # players = Player.objects.all()
+    print('WE ARE RUNNING EVERY SECNOD!!!')
+    print('ARE GROUP ALREADY THERE??', group_model_exists())
+    if group_model_exists():
+        for g in Group.objects.all():
+            print('GROUPPPPP:::', g.pk)
+    channels.Group('hellow').send(
+            {'text': json.dumps(
+                {'price': 123})}
+        )
+
+
+l = task.LoopingCall(runEverySecond)
+if not l.running:
+    l.start(1.0) # call every second
