@@ -63,7 +63,9 @@ USE_POINTS = True
 LANGUAGE_CODE = 'en'
 
 # if an app is included in SESSION_CONFIGS, you don't need to list it here
-INSTALLED_APPS = ['otree',  'background_task', ]
+INSTALLED_APPS = ['otree',
+                #   'background_task',
+                  ]
 
 # SENTRY_DSN = ''
 
