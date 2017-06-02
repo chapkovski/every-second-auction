@@ -69,6 +69,7 @@ class Group(BaseGroup):
 
 
 def runEverySecond():
+    print('checking if there are active groups...')
     if group_model_exists():
         activated_groups = Group.objects.filter(activated=True)
         for g in activated_groups:
