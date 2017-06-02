@@ -110,36 +110,14 @@ SESSION_CONFIG_DEFAULTS = {
 
 
 SESSION_CONFIGS = [
-    # {
-    #     'name': 'test',
-    #     'display_name': 'test',
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['test', ],
-    # }
-    # {
-    #     'name': 'test',
-    #     'display_name': 'test',
-    #     'num_demo_participants': 1,
-    #     'app_sequence': ['test', ],
-    # },
-    # {
-    #     'name': 'ebay',
-    #     'display_name': 'ebay',
-    #     'num_demo_participants': 3,
-    #     'app_sequence': ['ebay', ],
-    # },
+
         {
-            'name': 'sandbox1',
-            'display_name': 'sandbox1',
+            'name': 'volunteer',
+            'display_name': "Dynamic volunteer's dilemma",
             'num_demo_participants': 3,
-            'app_sequence': ['sandbox1', ],
+            'app_sequence': ['volunteer', ],
         },
-        # {
-        #     'name': 'risk',
-        #     'display_name': 'risk',
-        #     'num_demo_participants': 1,
-        #     'app_sequence': ['risk', ],
-        # },
+
 ]
 
 # anything you put after the below line will override

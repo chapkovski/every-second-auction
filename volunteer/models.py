@@ -28,27 +28,21 @@ from django.dispatch import receiver
 
 
 def group_model_exists():
-    return 'sandbox1_group' in connection.introspection.table_names()
+    return 'volunteer_group' in connection.introspection.table_names()
 
 
     # for p in players:
     #     print(p.participant.code)
 
 class Constants(BaseConstants):
-    name_in_url = 'sandbox1'
+    name_in_url = 'volunteer'
     players_per_group = 3
     num_rounds = 1
-    endowment = 5000
-    instruction_template = 'sandbox1/Instructions.html'
+    endowment = 50
+    instruction_template = 'volunteer/Instructions.html'
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):
-        print('#####', l.__dict__)
-
-        # if not 'background_starts' in self.session.vars:
-        #     print('ADDING TASK>>>>>>>>')
-        #     self.session.vars['background_starts'] = True
-
         ...
 
 class Player(BasePlayer):
@@ -60,11 +54,6 @@ class Group(BaseGroup):
     price = models.IntegerField(initial=0)
     activated = models.BooleanField()
     timeout = models.BooleanField(initial = False)
-
-# @receiver(post_save, sender=Group)
-# def group_handler(sender, **kwargs):
-#     curgroup = kwargs['instance']
-
 
 
 
@@ -91,4 +80,4 @@ def runEverySecond():
 
 l = task.LoopingCall(runEverySecond)
 if not l.running:
-    l.start(1.0) # call every second
+    l.start(1.0)
