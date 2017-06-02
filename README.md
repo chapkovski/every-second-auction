@@ -1,3 +1,8 @@
-# a small demo how to make a zip in otree
-If you need to  create a table form with loops over several lists at the same
-It uses oTree `view` internal function `self.get_form()`
+# A dynamic volunteer's dilemma.
+
+This is a dynamic version of volunteer's dilemma (Diekmann 1985).
+
+
+
+=====
+Diekmann, A., 1985. Volunteer's dilemma. Journal of Conflict Resolution, 29(4), pp.605-610.
