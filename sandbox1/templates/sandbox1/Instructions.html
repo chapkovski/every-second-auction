@@ -1,0 +1,16 @@
+{% load otree_tags staticfiles %}
+
+<div class="instructions well well-lg">
+    <h3>Rules:</h3>
+    <p>There are {{Constants.players_per_group}} participants in your group, including you.</p>
+    <p>Each participant receives an initial endowment of {{Constants.endowment}} points.</p>
+    <p>To receive this endowment one (and only one) from your group has to pay a certain price.</p>
+    <p> If this participant clicks a button <b>'Pay the price'</b> everyone in a group will
+    receive <b>{{Constants.endowment}} points</b>. The one who clicked <b>'Pay the price'</b>
+  will receive {{Constants.endowment}} points <b>minus</b> the price.</p>
+  <p>This price increases by 1 point every second. </p>
+  <p>If the price reaches your endowment and by then nobody chooses to pay the price,
+    that is: in {{Constants.endowment}} seconds, the round ends,
+  and everyone in a group receives zero points.</p>
+
+</div>

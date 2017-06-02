@@ -38,7 +38,8 @@ class Constants(BaseConstants):
     name_in_url = 'sandbox1'
     players_per_group = 3
     num_rounds = 1
-    endowment = 50
+    endowment = 5000
+    instruction_template = 'sandbox1/Instructions.html'
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):

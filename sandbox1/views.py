@@ -6,6 +6,11 @@ import json
 import channels
 from .finish_auction import advance_participants
 
+
+
+class Intro(Page):
+    ...
+
 class StartWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
@@ -35,6 +40,7 @@ class Results(Page):
 
 
 page_sequence = [
+    Intro,
     StartWaitPage,
     Decision,
     ResultsWaitPage,

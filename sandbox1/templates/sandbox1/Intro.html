@@ -2,12 +2,10 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Results
+    Introduction
 {% endblock %}
 
 {% block content %}
-Your earnings: {{player.payoff}}
-<div class="col-xs-12" style="height:10px;"></div>
 {% include Constants.instruction_template %}
     {% next_button %}
 {% endblock %}
