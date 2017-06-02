@@ -1,0 +1,23 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Auction
+{% endblock %}
+
+{% block content %}
+
+<div id="group_price">{{group.price}}</div>
+
+<button name="auction_winner" value="True" class="btn btn-primary btn-large">Accept this price</button>
+    {% next_button %}
+
+{% endblock %}
+
+
+      {% block scripts %}
+      {% include 'sandbox1/decision_channel.js.html' %}
+        <script>
+
+        </script>
+      {% endblock %}
