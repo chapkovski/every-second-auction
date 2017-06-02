@@ -26,7 +26,8 @@ class Decision(Page):
 class ResultsWaitPage(WaitPage):
 
     def after_all_players_arrive(self):
-        pass
+        for p in self.group.get_players():
+            p.set_payoff()
 
 
 class Results(Page):
