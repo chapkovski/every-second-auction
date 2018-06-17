@@ -21,8 +21,7 @@ class Decision(Page):
 
     def before_next_page(self):
         if self.player.auction_winner:
-            channels.Group(self.group.get_channel_group_name()).send(
-                {'text': json.dumps({'accept': True})})
+            self.group.advance_participants()
             self.group.activated = False
 
 
@@ -37,7 +36,7 @@ class Results(Page):
 
 
 page_sequence = [
-    Intro,
+    # Intro,
     StartWaitPage,
     Decision,
     ResultsWaitPage,

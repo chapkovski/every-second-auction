@@ -7,26 +7,26 @@
 
 {% block content %}
 
-<div class="jumbotron">
-  <h3>Current price: <span class="label label-success" id='group_price'>{{group.price}}</span></h3>
-  <div class="col-xs-12" style="height:10px;"></div>
-  <p><button name="auction_winner" value="True" class="btn btn-primary btn-lg btn-danger">Pay the price</button></p>
-</div>
+    <div class="jumbotron">
+        <h3>Current price: <span class="label label-success" id='group_price'>{{ group.price }}</span></h3>
+        <div class="col-xs-12" style="height:10px;"></div>
+        <p>
+            <input type="hidden" class="id_auction_winner" name="auction_winner" value="True" >
+            <button   class="btn btn-primary btn-lg btn-danger">Pay the price</button>
+        </p>
+    </div>
 
 
 
 
-{% include Constants.instruction_template %}
-</div>
+    {% include Constants.instruction_template %}
+    </div>
 
 
 
 {% endblock %}
 
 
-      {% block scripts %}
-      {% include 'volunteer/decision_channel.js.html' %}
-        <script>
-
-        </script>
-      {% endblock %}
+{% block scripts %}
+    {% include 'includes/decision_channel.js.html' %}
+{% endblock %}

@@ -1,0 +1,38 @@
+<script>
+    window.onload = function () {
+
+        var ws_scheme = window.location.protocol == "https:" ? "wss" : "ws";
+        var wpsocket = new WebSocket(ws_scheme + '://' + window.location.host + "/price_increase/{{player.pk}}/{{ group.pk }}");
+
+        // Handle any errors that occur.
+        wpsocket.onerror = function (error) {
+            console.log('WebSocket Error: ' + error);
+        };
+
+        // Show a connected message when the WebSocket is opened.
+        wpsocket.onopen = function (event) {
+
+            console.log('connected to oTree');
+        };
+
+
+        // Handle messages sent by the server.
+        wpsocket.onmessage = function (event) {
+            var obj = jQuery.parseJSON(event.data);
+            if (obj.accept) {
+                $('input#id_auction_winner').attr("value", false);
+                $('form').submit();
+            }
+            else {
+                $('#group_price').html(obj.price);
+            }
+        };
+
+
+        // Show a disconnected message when the WebSocket is closed.
+        wpsocket.onclose = function (event) {
+            console.log('disconnected from oTree');
+        };
+    };
+
+</script>

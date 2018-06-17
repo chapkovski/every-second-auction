@@ -13,18 +13,14 @@ from django.db import connection
 
 from twisted.internet import task
 
-
-
 author = 'Filipp Chapkovski, chapkovski@gmail.com'
 
 doc = """
 Your app description
 """
 
-
 from django.db.models.signals import pre_save, post_save
 from django.dispatch import receiver
-
 
 
 def group_model_exists():
@@ -34,6 +30,7 @@ def group_model_exists():
     # for p in players:
     #     print(p.participant.code)
 
+
 class Constants(BaseConstants):
     name_in_url = 'volunteer'
     players_per_group = 3
@@ -41,21 +38,30 @@ class Constants(BaseConstants):
     endowment = 50
     instruction_template = 'volunteer/Instructions.html'
 
+
 class Subsession(BaseSubsession):
     def before_session_starts(self):
         ...
 
+
 class Player(BasePlayer):
     auction_winner = models.BooleanField(initial=False)
+
     def set_payoff(self):
         self.payoff = (Constants.endowment - self.group.price * self.auction_winner) * (not self.group.timeout)
+
 
 class Group(BaseGroup):
     price = models.IntegerField(initial=0)
     activated = models.BooleanField()
-    timeout = models.BooleanField(initial = False)
+    timeout = models.BooleanField(initial=False)
 
+    def get_channel_group_name(self):
+        return 'auction_group_{}'.format(self.pk)
 
+    def advance_participants(self):
+        channels.Group(self.get_channel_group_name()).send(
+            {'text': json.dumps({'accept': True})})
 
 
 def runEverySecond():
@@ -67,7 +73,7 @@ def runEverySecond():
                 g.price += 1
                 g.save()
                 channels.Group(
-                    'groupid{}'.format(g.pk)
+                    g.get_channel_group_name()
                 ).send(
                     {'text': json.dumps(
                         {'price': g.price})}
@@ -75,7 +81,7 @@ def runEverySecond():
             else:
                 g.timeout = True
                 g.save()
-                advance_participants([p.participant for p in g.get_players()])
+                g.advance_participants()
 
 
 l = task.LoopingCall(runEverySecond)
