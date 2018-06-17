@@ -12,10 +12,10 @@ import json
 from django.db import connection
 
 from twisted.internet import task
-from twisted.internet import reactor
-from .finish_auction import advance_participants
 
-author = 'Filipp Chapkovski, UZH'
+
+
+author = 'Filipp Chapkovski, chapkovski@gmail.com'
 
 doc = """
 Your app description
