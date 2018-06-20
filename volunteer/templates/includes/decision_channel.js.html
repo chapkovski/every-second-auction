@@ -20,7 +20,7 @@
         wpsocket.onmessage = function (event) {
             var obj = jQuery.parseJSON(event.data);
             if (obj.accept) {
-                $('input#id_auction_winner').attr("value", false);
+                $('input#id_auction_winner').attr("value", 'False');
                 $('form').submit();
             }
             else {
